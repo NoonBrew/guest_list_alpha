@@ -13,6 +13,7 @@ class MainActivity : AppCompatActivity() {
     // initialize our mutable list to store guest names.
 //    var guestNames: MutableList<String> = mutableListOf()
     private val guestListViewModel: GuestListViewModel by lazy {
+        // lazy initialization - lambda won't be called until guestListViewModel is used
         ViewModelProvider(this).get(GuestListViewModel::class.java)
     }
 
@@ -44,6 +45,10 @@ class MainActivity : AppCompatActivity() {
         val savedLastGuestMessage = savedInstanceState?.getString(LAST_GUEST_NAME_KEY)
         lastGuestAdded.text = savedLastGuestMessage
 
+        /**
+         * Needed for when guest list app is destroyed and recreated
+         * updates the guest list from the view model.
+         */
         updateGuestList()
 
     }
