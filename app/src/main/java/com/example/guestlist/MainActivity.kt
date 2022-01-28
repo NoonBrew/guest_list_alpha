@@ -12,7 +12,7 @@ const val LAST_GUEST_NAME_KEY = "last-guest-name-bundle-key"
 class MainActivity : AppCompatActivity() {
     // initialize our mutable list to store guest names.
 //    var guestNames: MutableList<String> = mutableListOf()
-    val guestListViewModel: GuestListViewModel by lazy {
+    private val guestListViewModel: GuestListViewModel by lazy {
         ViewModelProvider(this).get(GuestListViewModel::class.java)
     }
 
@@ -65,7 +65,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun updateGuestList() {
-        val guestDisplay = guestListViewModel.GetSortedGuestNames().joinToString(separator = "\n")
+        val guestDisplay = guestListViewModel.getSortedGuestNames().joinToString(separator = "\n")
         guestList.text = guestDisplay
     }
 }
